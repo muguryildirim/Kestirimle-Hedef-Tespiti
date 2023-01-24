@@ -15,7 +15,7 @@ Topic (Konu): Producer’lardan gelen veriler Topic içine gönderilir.
 Consumer (Tüketici): Topic ve Partitionlar’da tutulan verileri okur (pull eder) ve verilen komutları yerine getirir.
 ### Konsol Komutları ve Kafka Bağlantısı
 ZooKeeper, dağıtılmış sistemlerde hizmet senkronizasyonu için ve bir adlandırma kaydı olarak kullanılır. ZooKeeper, Kafka kümesindeki düğümlerin durumunu izlemek ve Kafka konularının ve mesajlarının bir listesini tutmak için kullanılır.
-.\bin\windows\zookeeper-server-start.bat .\config\zookeper.properties
+``` .\bin\windows\zookeeper-server-start.bat .\config\zookeper.properties ```
 Kafka Sunucu Başlatımı
 ``` .\bin\windows\kafka-server-start.bat .\config\server.properties ```
 Topic Oluşturumu
