@@ -181,3 +181,7 @@ public class ProducerApplication implements CommandLineRunner {
         kafkaTemplate.send(TOPIC, new Sensor("1", sensorVector1[0], sensorVector1[1],sensor1BearingInformation.intValue(),"2", sensorVector2[0], sensorVector2[1],sensor2BearingInformation.intValue())); //gönderiler değerler
 }
 ```
+Uygulama çıktısı şu şekildedir:
+```
+
+
