@@ -103,7 +103,81 @@ Ardından, bir Üretici örneğini saran ve Kafka konularına mesaj göndermek i
 
         return new DefaultKafkaProducerFactory<>(config);
   }
-  ```
-
-
   
+      @Bean
+    public KafkaTemplate<String, Sensor> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
+  ```
+## Kerteriz Açısı Hesaplama Algoritması
+Program producer sınıfında rastgele 3 nokta üretecektir.
+```
+Sensör 1 == Konumu
+Sensör 2 == Koordinatları
+Hedef == Koordinatları
+```
+![alt text](https://mathsathome.com/wp-content/uploads/2022/03/definition-of-a-bearing-768x434.png)
+
+(targetX,targetY)'ye göre 2 nokta koordinatı ve kerteriz açısı verirseniz, (targetX,targetY)'yi aşağıdaki denkleme göre hesaplayabilirsiniz. m = tan(90-ß) olduğunu biliyoruz. ß Yön Açısıdır. Denklemler sonucunda iki bilinmeyenli ve iki denklemimiz oldu. Bu denklemleri çözerseniz, kolayca targetX ve targetY elde edebilirsiniz. Program bu kodu işleyecektir.
+
+(Matematik) Bu koordinatlar arasındaki yön açısını aşağıdaki denklemler yardımı ile hesaplanabilir.
+```
+bearing = arctan(X,Y)
+X = cos θb * sin ∆L
+Y = cos θa * sin θb – sin θa * cos θb * cos ∆L
+L = Longitude
+theta = Latitude and ∆L is the difference between the Longitudal values of the two points  
+```
+(Programlama, Uygulama)
+```
+@SpringBootApplication
+public class ProducerApplication implements CommandLineRunner {
+
+    protected static int[] getRandomVect(int minX, int minY, int maxX, int maxY)
+    {
+        int[] result=new int[2];
+        result[0]=(int) (Math.random()*(maxX-minX)+minX); //rastgele degerler alınır.
+        result[1]=(int) (Math.random()*(maxY-minY)+minY);
+        return result;
+    }
+    protected static double bearing(int lat1, int lon1, int lat2, int lon2){
+        double longitude1 = lon1;
+        double longitude2 = lon2;
+        double latitude1 = Math.toRadians(lat1);
+        double latitude2 = Math.toRadians(lat2);
+        double longDiff= Math.toRadians(longitude2-longitude1);
+        double y = Math.sin(longDiff)*Math.cos(latitude2);
+        double x = Math.cos(latitude1)*Math.sin(latitude2)-Math.sin(latitude1)*Math.cos(latitude2)*Math.cos(longDiff); 
+
+        return (Math.toDegrees(Math.atan2(y, x))+360)%360; // radyandan dereceye çevirmek için.
+    }
+
+    @Autowired
+    private KafkaTemplate<String, Sensor> kafkaTemplate;
+
+    @Autowired
+    private KafkaTemplate<String, String> bearingKafkaTemplate;
+
+    private static final String TOPIC = "Location_json";
+
+    public static void main(String[] args) {
+        SpringApplication.run(ProducerApplication.class, args);
+    }
+
+    @Override
+    public void run(String... strings) throws Exception {
+
+        Double sensor1BearingInformation = 0d;
+        Double sensor2BearingInformation = 0d;
+
+        int[] target = getRandomVect(-500, -500, 500, 500);
+
+        int[] sensorVector1 = getRandomVect(-500, -500, 500, 500); // 1000x1000
+        int[] sensorVector2 = getRandomVect(-500, -500, 500, 500);
+
+        sensor1BearingInformation = bearing(sensorVector1[1], sensorVector1[0], target[1], target[0]);
+        sensor2BearingInformation = bearing(sensorVector2[1], sensorVector2[0], target[1], target[0]);
+
+        kafkaTemplate.send(TOPIC, new Sensor("1", sensorVector1[0], sensorVector1[1],sensor1BearingInformation.intValue(),"2", sensorVector2[0], sensorVector2[1],sensor2BearingInformation.intValue())); //gönderiler değerler
+}
+```
