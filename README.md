@@ -5,9 +5,7 @@
 •	Maven
 •	Java 
 •	Apache Kafka
-•	Spring 
-    o	Spring Boot
-    o	Spring Kafka
+•	Spring (Spring Boot, Spring Kafka)
     
 ### Kafka Mimarisi
 Producer (Üretici): Kafka’ya veri sağlayan kaynaklardır. Sunucular, bulut verileri, makine durumu verileri gibi daha pek çok kaynaktan alınan veriler olabilir. Bu veriler, veri formatlarıyla birlikte Kafka Cluster yapısı içine gönderilir (Push edilir).
