@@ -17,7 +17,7 @@ Consumer (Tüketici): Topic ve Partitionlar’da tutulan verileri okur (pull ede
 ZooKeeper, dağıtılmış sistemlerde hizmet senkronizasyonu için ve bir adlandırma kaydı olarak kullanılır. ZooKeeper, Kafka kümesindeki düğümlerin durumunu izlemek ve Kafka konularının ve mesajlarının bir listesini tutmak için kullanılır.
 .\bin\windows\zookeeper-server-start.bat .\config\zookeper.properties
 Kafka Sunucu Başlatımı
- #### .\bin\windows\kafka-server-start.bat .\config\server.properties
+``` .\bin\windows\kafka-server-start.bat .\config\server.properties ```
 Topic Oluşturumu
 #### .\bin\windows\kafka-console-consumer.bat --zookeper localhost:2181 --replication-factor 1 --partitions 1--topic Location_json
 Kafka’ya Mesaj Gönderme
