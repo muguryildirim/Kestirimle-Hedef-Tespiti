@@ -1,4 +1,4 @@
-# Proje Adı: Kestririmle-Hedef-Tespiti
+# Proje Adı: Kestirimle-Hedef-Tespiti
 ## Proje Amacı: 1000x1000’lik bir alan üzerinde konumlanacak iki sensörün, uygulama üzerinden aldığı sensor orjin ve hedef kerteriz bilgilerini kullanarak hedefin kartezyen koordinatının tespit edilmesi.
 
 ### Kullanılan Teknolojiler:
