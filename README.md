@@ -23,8 +23,14 @@ Kafka Sunucu Başlatımı
 .\bin\windows\kafka-server-start.bat .\config\server.properties
 ```
 Topic Oluşturumu
-#### .\bin\windows\kafka-console-consumer.bat --zookeper localhost:2181 --replication-factor 1 --partitions 1--topic Location_json
+```
+.\bin\windows\kafka-console-consumer.bat --zookeper localhost:2181 --replication-factor 1 --partitions 1--topic Location_json
+```
 Kafka’ya Mesaj Gönderme
-#### .\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic Location_json
+```
+.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic Location_json
+```
 Kafka’dan Mesaj Okuma
-#### .\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic Location_json --from-beginning
+```
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic Location_json --from-beginning
+```
