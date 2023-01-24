@@ -11,7 +11,9 @@
     
 ### Kafka Mimarisi
 Producer (Üretici): Kafka’ya veri sağlayan kaynaklardır. Sunucular, bulut verileri, makine durumu verileri gibi daha pek çok kaynaktan alınan veriler olabilir. Bu veriler, veri formatlarıyla birlikte Kafka Cluster yapısı içine gönderilir (Push edilir).
+
 Topic (Konu): Producer’lardan gelen veriler Topic içine gönderilir. 
+
 Consumer (Tüketici): Topic ve Partitionlar’da tutulan verileri okur (pull eder) ve verilen komutları yerine getirir.
 ### Konsol Komutları ve Kafka Bağlantısı
 ZooKeeper, dağıtılmış sistemlerde hizmet senkronizasyonu için ve bir adlandırma kaydı olarak kullanılır. ZooKeeper, Kafka kümesindeki düğümlerin durumunu izlemek ve Kafka konularının ve mesajlarının bir listesini tutmak için kullanılır.
