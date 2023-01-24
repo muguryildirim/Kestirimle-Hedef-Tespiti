@@ -183,5 +183,5 @@ public class ProducerApplication implements CommandLineRunner {
 ```
 Uygulama çıktısı şu şekildedir:
 ```
-
+![](Ekran Alıntısı.PNG)
 
